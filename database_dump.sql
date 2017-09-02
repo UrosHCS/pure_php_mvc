@@ -14,9 +14,9 @@ CREATE TABLE `user` (
 INSERT INTO `user` 
 (`id`, `username`, `password`)
 VALUES
-(1, 'jack', 'admin'),
-(2, 'jane', 'admin'),
-(3, 'uros', 'admin');
+(1, 'jack', '$2y$10$hB4gQjraxuSK3d30w4/C.eISESig81vvUF6BzA4fdiL.ScGa6qtXG'),
+(2, 'jane', '$2y$10$hB4gQjraxuSK3d30w4/C.eISESig81vvUF6BzA4fdiL.ScGa6qtXG'),
+(3, 'uros', '$2y$10$hB4gQjraxuSK3d30w4/C.eISESig81vvUF6BzA4fdiL.ScGa6qtXG');
 
 UPDATE `user`
 SET `username` = 'john'
