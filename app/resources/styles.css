@@ -1,0 +1,61 @@
+body {
+	background-color: #f7f7f7;
+	margin: 0px;
+	font-family: sans-serif;
+	font-size: 150%;
+}
+
+input {
+  font-size: 100%;
+}
+
+input[type=submit] {
+	background-color: #005666;
+    color: white; 
+    border: 0 none;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 5px 10px 5px 10px; 
+}
+
+.navbar {
+    padding: 8px;
+	background-color: #005666;
+	
+}
+
+.navbar ul {
+	list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar li {
+    display: inline;
+    margin-left: 10px;
+    padding: 0;
+
+}
+
+.navbar a {
+	text-decoration: none;
+    color: white;
+}
+
+.navbar a:hover {
+    color: lightgray;
+}
+
+.content {
+	margin: 8px;
+}
+
+.footer {
+	border-top: thick solid lightgray;
+	margin: 20px 8px 0px 8px;
+}
+
+.center {
+	margin: auto;
+	text-align: center;
+}
