@@ -61,10 +61,7 @@ class DBConnection {
 
 		$columns = implode(', ', $columns);
 
-		if ($preparedCondition !== '') {
-			$preparedCondition = ' WHERE ' . $preparedCondition;
-		}
-		$preparedQuery = "SELECT {$columns} FROM {$tableName}{$preparedCondition};";
+		$preparedQuery = "SELECT {$columns} FROM {$tableName} {$preparedCondition};";
 
 		return $this->query($preparedQuery, $preparedValues);
 	}
@@ -87,7 +84,7 @@ class DBConnection {
 	 * @return PDOStatement instance on which usualy fetchAll() method is called
 	 */
 	public function selectById(string $tableName, int $id) {
-		$preparedCondition = 'id = :id';
+		$preparedCondition = 'WHERE id = :id';
 		$preparedValues = [':id' => $id];
 		return $this->select($tableName, ['*'], $preparedCondition, $preparedValues);
 	}

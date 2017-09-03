@@ -51,7 +51,7 @@ class User extends Model implements Identity
 	}
 
 	public function authenticate() {
-		$preparedCondition = 'username = :username';
+		$preparedCondition = 'WHERE username = :username';
 		$preparedValues = [':username' => $this->username];
 
 		$userArr = static::findAll($preparedCondition, $preparedValues);
