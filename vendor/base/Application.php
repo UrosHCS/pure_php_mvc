@@ -10,7 +10,8 @@ class Application {
 	public function start() {
 		// Get all routes that we are handling
 		$router = new Router('/home', 'home');
-		$router->setRoutes(APP_ROUTES);
+		$routes = require_once __DIR__ . '/../../app/routes.php';
+		$router->setRoutes($routes);
 
 		// Get the REQUEST_URL and REQUEST_METHOD
 		$url = $this->getRequestUrl();

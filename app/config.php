@@ -2,8 +2,8 @@
 
 return [
 	'db' => [
-		'dsn' => 'mysql:host=localhost;dbname=mvc',
-		'username' => 'root',
-		'password' => '',
+		'dsn' => 'mysql:host=localhost;dbname=db_mvc',
+		'username' => 'db_mvc',
+		'password' => 'db_mvc',
 	]
 ];

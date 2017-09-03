@@ -23,7 +23,9 @@ class DBConnection {
 	 * @return PDO instance
 	 */
 	protected function getConnection() {
-		$dbConfig = APP_CONFIG['db'];
+		$config = require_once __DIR__ . '/../../app/config.php';
+		$dbConfig = $config['db'];
+		
 		$pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
 		return new PDO($dbConfig['dsn'], $dbConfig['username'], $dbConfig['password'], $pdo_options);
 	}

@@ -20,7 +20,7 @@
 				<a href="/users">Users</a>
 			</li>
 			<li>
-				<a href="/logout">Logout (<?= $_SESSION['username'] ?? 'no one' ?>)</a>
+				<a href="/logout">Logout (<?= $this->authUsername(); ?>)</a>
 			</li>
 		</ul>
 

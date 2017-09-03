@@ -3,7 +3,7 @@
 namespace vendor\base;
 
 /**
-* 
+* Static methods for authentication and sessions
 */
 class Auth {
 
