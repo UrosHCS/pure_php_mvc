@@ -1,4 +1,5 @@
 <?php $this->registerCSS('login-styles.css'); ?>
+<?php $this->registerScript('login-script.js'); ?>
 
 <h2>Please login or register</h2>
 
@@ -12,7 +13,7 @@
 
 <div class="forms">
 
-	<div class="form">
+	<div class="form login-form">
 
 		<form action="/login" method="POST">
 
@@ -38,12 +39,11 @@
 
 
 		</form>
+
+		<button class="btn-register-form">register here</button>
 	</div>
 
-	<hr>
-	<br>
-
-	<div class="form">
+	<div class="form register-form">
 
 		<form action="/register" method="POST">
 
@@ -52,7 +52,7 @@
 			</div>
 
 			<div class="form-block">
-				<input value="<?= $user->username ?? '' ?>" id="register-username" type="text" name="username" placeholder="username" required
+				<input value="<?= $user->username ?? '' ?>" id="register-username" type="text" name="username" placeholder="username" required>
 			</div>
 
 			<div class="form-label">
@@ -75,9 +75,9 @@
 				<input type="submit" value="Register">
 			</div>
 
-
-
 		</form>
+
+		<button class="btn-login-form">login here</button>
 	</div>
 </div>
 
