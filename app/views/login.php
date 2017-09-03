@@ -1,15 +1,4 @@
-<style type="text/css">
-	.form {
-		margin-left: 20px;
-	}
-	.form-label, .form-button {
-		margin-top: 5px;
-	}
-	.error {
-		background-color: #ff8989;
-		padding: 10px;
-	}
-</style>
+<?php $this->registerCSS('login-styles.css'); ?>
 
 <h2>Please login or register</h2>
 
@@ -39,7 +28,7 @@
 				<label for="login-password">Password</label>
 			</div>
 
-			<div class="form-label">
+			<div class="form-block">
 				<input id="login-password" type="password" name="password" placeholder="Password" required>
 			</div>
 

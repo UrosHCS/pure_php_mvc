@@ -2,7 +2,9 @@
 <html>
 <head>
 	<title>MVC app</title>
-	<link rel="stylesheet" href="/app/resources/styles.css">
+	<link rel="stylesheet" href="/css/styles.css">
+	<!-- Other CSS links are inserted dynamicaly here -->
+	<?= $this->cssLinks ?>
 </head>
 <body>
 
@@ -28,7 +30,6 @@
 	
 	<div class="content">
 		<?= $this->content ?>
-		
 	</div>
 
 	<div class="footer">
@@ -37,7 +38,9 @@
 		</div>
 	</div>
 
-	<script src="/app/resources/script.js"></script>
+	<script src="/js/script.js"></script>
+	<!-- Other scripts are inserted dynamicaly here -->
+	<?= $this->scripts ?>
 
 </body>
 </html>

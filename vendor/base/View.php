@@ -8,10 +8,22 @@ namespace vendor\base;
 */
 class View {
 
+	const VIEWS_PATH = __DIR__ . '/../../app/views/';
+
 	/**
-	* Content that goes in the layouts/main.php
+	* Content that goes into the layouts/main.php
 	*/
 	private $content;
+
+	/**
+	* CSS links for the header in the layouts/main.php
+	*/
+	private $cssLinks = '';
+
+	/**
+	* Script tags with src property for the end of the html body
+	*/
+	private $scripts = '';
 
 	/**
 	 * Renders a view file.
@@ -28,21 +40,35 @@ class View {
 		$isLoggedIn = Auth::isLoggedIn();
 
 		ob_start();
-		require_once $this->relativePathToViews() . $file . '.php';
-		$this->content = ob_get_contents();
-		ob_end_clean();
+		require_once static::VIEWS_PATH . $file . '.php';
+		$this->content = ob_get_clean();
 
 		ob_start();
-		require_once $this->relativePathToViews() . 'layouts/main.php';
-		$html = ob_get_contents();
-		ob_end_clean();
+		require_once static::VIEWS_PATH . 'layouts/main.php';
+		$html = ob_get_clean();
 
 		echo $html;
 		exit; // End app manually just in case;
 	}
 
-	protected function relativePathToViews() {
-		return __DIR__ . '/../../app/views/';
+	public function authUsername() {
+		return Auth::username();
+	}
+
+	/**
+	 * Inserts a CSS link tag to html head.
+	 * @param string $href - path to file from public/css dir
+	 */
+	public function registerCSS(string $relativePath) {
+		$this->cssLinks .= '<link rel="stylesheet" href="/css/' . $relativePath . '">';
+	}
+
+	/**
+	 * Inserts a script tag to html body end.
+	 * @param string $href - path to file from public/js dir
+	 */
+	public function registerScript(string $relativePath) {
+		$this->scripts .= '<script src="/js/' . $relativePath . '"></script>';
 	}
 
 }

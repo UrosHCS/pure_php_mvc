@@ -6,9 +6,7 @@ use vendor\Controller;
 use vendor\base\DB;
 use vendor\base\Auth;
 use app\models\User;
-/**
- * 
- */
+
 class HomeController extends Controller
 {
 
@@ -47,8 +45,7 @@ class HomeController extends Controller
 		$user->username = filter_input(INPUT_POST, 'username');
 		$user->password = filter_input(INPUT_POST, 'password');
 		if ($user->validate() && $user->login()) {
-			$this->render('home');
-			return;
+			$this->redirectHome();
 		} 
 		$error = 'Please recheck your username and password...';
 		$this->render('login', [

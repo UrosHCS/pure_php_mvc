@@ -5,9 +5,7 @@ namespace app\controllers;
 use vendor\Controller;
 use vendor\base\Auth;
 use app\models\User;
-/**
-* 
-*/
+
 class UserController extends Controller
 {
 
@@ -16,7 +14,7 @@ class UserController extends Controller
 			$users = User::findAll();
 			$this->render('users', ['users' => $users]);
 		} else {
-			$this->redirect('login');
+			$this->redirectLogin();
 		}
 		
 	}

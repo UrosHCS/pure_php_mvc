@@ -32,7 +32,7 @@ class Auth {
 		session_destroy();
 	}
 
-	public static function validatePassword() {
-
+	public static function username() {
+		return $_SESSION[self::USERNAME];
 	}
 }

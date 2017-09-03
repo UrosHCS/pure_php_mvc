@@ -10,9 +10,6 @@ class Application {
 	public function start() {
 		// Get all routes that we are handling
 		$router = new Router('/home', 'home');
-
-		//$routes = require_once ROUTES_PATH;
-
 		$router->setRoutes(APP_ROUTES);
 
 		// Get the REQUEST_URL and REQUEST_METHOD

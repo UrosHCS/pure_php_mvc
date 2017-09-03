@@ -1,0 +1,10 @@
+.form {
+	margin-left: 20px;
+}
+.form-label, .form-button {
+	margin-top: 10px;
+}
+.error {
+	background-color: #ff8989;
+	padding: 10px;
+}

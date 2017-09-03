@@ -10,12 +10,18 @@ use PDO;
 */
 class DBConnection {
 
+	/**
+	* Instance of the PDO class
+	*/
 	private $conn;
 
 	public function __construct() {
 		$this->conn = $this->getConnection();
 	}
 
+	/**
+	 * @return PDO instance
+	 */
 	protected function getConnection() {
 		$dbConfig = APP_CONFIG['db'];
 		$pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
@@ -25,6 +31,10 @@ class DBConnection {
 	/**
 	 * Every method in this class ends up calling this method.
 	 * Only this method executes queries in the database.
+	 * @param string $preparedQuery a prepared sql query with placeholders for values
+	 * @param string $preparedValues values to insert into the prepared query
+	 * @param bool $insertingValues whether or not this is an INSERT query
+	 * @return PDOStatement instance on which usualy fetchAll() method is called
 	 */
 	public function query(string $preparedQuery, array $preparedValues, bool $insertingValues = false) {
 		$statement = $this->conn->prepare($preparedQuery);
@@ -37,7 +47,12 @@ class DBConnection {
 	}
 
 	/**
-	 * Base method for executing SELECT queries.
+	 * Preform a SELECT query
+	 * @param string $tableName name of the table from where to SELECT
+	 * @param array $columns columns to select
+	 * @param string $preparedCondition a prepared sql condition with placeholders for values
+	 * @param string $preparedValues values to insert into the prepared condition
+	 * @return PDOStatement instance on which usualy fetchAll() method is called
 	 */
 	public function select(string $tableName, array $columns, 
 		string $preparedCondition = '', array $preparedValues = []) {
@@ -52,10 +67,23 @@ class DBConnection {
 		return $this->query($preparedQuery, $preparedValues);
 	}
 
+	/**
+	 * Preform a SELECT * FROM ... query
+	 * @param string $tableName name of the table from where to SELECT
+	 * @param string $preparedCondition a prepared sql condition with placeholders for values
+	 * @param string $preparedValues values to insert into the prepared condition
+	 * @return PDOStatement instance on which usualy fetchAll() method is called
+	 */
 	public function selectAll(string $tableName, string $preparedCondition = '', array $preparedValues = []) {
 		return $this->select($tableName, ['*'], $preparedCondition, $preparedValues);
 	}
 
+	/**
+	 * Preform a SELECT * FROM $tableName WHERE id = $id query
+	 * @param string $tableName name of the table from where to SELECT
+	 * @param int $id the id to find
+	 * @return PDOStatement instance on which usualy fetchAll() method is called
+	 */
 	public function selectById(string $tableName, int $id) {
 		$preparedCondition = 'id = :id';
 		$preparedValues = [':id' => $id];
@@ -63,7 +91,10 @@ class DBConnection {
 	}
 
 	/**
-	 * Base method for executing INSERT queries.
+	 * Base method for executing INSERT queries. Only a single row can be inserted
+	 * @param string $tableName name of the table from where to SELECT
+	 * @param array $data the data to insert in the form of $columnName => $columnValue pairs
+	 * @return PDOStatement instance on which usualy fetchAll() method is called
 	 */
 	public function insertInto(string $tableName, array $data) {
 		$columns = implode(', ', array_keys($data));
@@ -79,8 +110,11 @@ class DBConnection {
 
 	/** 
 	 * Add a prefix before every key.
+	 * @param string $prefix
+	 * @param array $data
+	 * @return array
 	 */
-	private function prepareData($prefix, $data) {
+	private function prepareData(string $prefix, array $data) {
 		$preparedData = [];
 		foreach ($data as $key => $value) {
 		    $preparedData[$prefix . $key] = $value;

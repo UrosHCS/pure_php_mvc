@@ -1,3 +1,3 @@
 <div>
-	Welcome <?= $user->username ?? ' ... Guest?' ?>
+	Welcome <?= $this->authUsername() ?? ' ... Guest?' ?>
 </div>
